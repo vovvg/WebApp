@@ -5,33 +5,41 @@
   Time: 12:34 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Login</title>
+	<title>Users</title>
 </head>
+
 <body>
-<h2>Input your login/password</h2>
-login: <form method="get">
-	<input type="text" name="login" size="25">
-	<br>
-	<br>
-	password: <form method="get">
-	<input type="password" name="password" size="25">
-	<br>
-	<br>
-	<input type="submit" value="Submit">
-	<input type="reset" value="Reset">
-	<%
-		String log = request.getParameter("login");
-		String pass = request.getParameter("password");
-		if (log.equals("1") && pass.equals("1")) {
-			System.out.println(log + pass + request.getContextPath());
-			response.sendRedirect(request.getContextPath() + "/test");
-		}
-	%>
-</form>
-</form>
+<div>
+	<h1>EZY</h1>
+</div>
+
+<div>
+	<div>
+		<div>
+			<h2>Log In</h2>
+		</div>
+		<%
+			List<String> names = (List<String>) request.getAttribute("userNames");
+
+			if (names != null && !names.isEmpty()) {
+				out.println("<ui>");
+				for (String s : names) {
+					out.println("<li>" + s + "</li>");
+				}
+				out.println("</ui>");
+			} else out.println("<p>There are no users yet!</p>");
+		%>
+	</div>
+</div>
+
+<div>
+	<button onclick="location.href=''">Back to home</button>
+</div>
+</body>
+</html>
 </body>
 </html>
