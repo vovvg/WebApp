@@ -3,12 +3,4 @@
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 	<display-name>WebApp</display-name>
-	<servlet>
-		<servlet-name>WebApp</servlet-name>
-		<servlet-class>ru.user.project.web.WebApp</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>WebApp</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
 </web-app>
