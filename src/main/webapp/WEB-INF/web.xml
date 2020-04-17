@@ -1,6 +1,6 @@
 <web-app>
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>Home.jsp</welcome-file>
 	</welcome-file-list>
 	<display-name>WebApp</display-name>
 </web-app>

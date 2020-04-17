@@ -14,7 +14,7 @@
 <body>
 <h2>Input your login/password</h2>
 login: <form method="get">
-	<input type="text" name="log" size="25">
+	<input type="text" name="login" size="25">
 	<br>
 	<br>
 	password: <form method="get">
@@ -23,10 +23,15 @@ login: <form method="get">
 	<br>
 	<input type="submit" value="Submit">
 	<input type="reset" value="Reset">
+	<%
+		String log = request.getParameter("login");
+		String pass = request.getParameter("password");
+		if (log.equals("1") && pass.equals("1")) {
+			System.out.println(log + pass + request.getContextPath());
+			response.sendRedirect(request.getContextPath() + "/test");
+		}
+	%>
 </form>
-
 </form>
-
-	<a href="test">Test page</a>
 </body>
 </html>
