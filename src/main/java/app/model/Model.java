@@ -5,6 +5,7 @@ import app.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Model {
 	private static Model instance = new Model();
@@ -27,5 +28,11 @@ public class Model {
 		return model.stream()
 				.map(User::getName)
 				.collect(Collectors.toList());
+	}
+	public String password(String name){
+		return model.stream()
+				.filter(x -> x.getName().equals(name))
+				.map(User::getPassword)
+				.collect(Collectors.joining());
 	}
 }

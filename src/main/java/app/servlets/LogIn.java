@@ -14,13 +14,35 @@ import java.util.List;
 
 @WebServlet(name = "login", urlPatterns = "/LogIn")
 public class LogIn extends HttpServlet {
+	public Boolean flag = false;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Model model = Model.getInstance();
-		List<String> names = model.list();
-		req.setAttribute("userNames", names);
-
+		if (flag)
+			resp.sendRedirect(req.getContextPath() + "/test");
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
 		requestDispatcher.forward(req, resp);
+
 	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		String password = req.getParameter("pass");
+		Model model = Model.getInstance();
+		flag = false;
+		doGet(req, resp);
+		List<String> names = model.list();
+		for(String user : names)
+			if(model.password(name).equals(password) && user.equals(name))
+				flag = true;
+		doGet(req, resp);
+	}
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		Model model = Model.getInstance();
+//		List<String> names = model.list();
+//		req.setAttribute("userNames", names);
+//
+//		RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
+//		requestDispatcher.forward(req, resp);
+//	}
 }
