@@ -2,10 +2,10 @@ package app.model;
 
 import app.entities.User;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Model {
 	private static Model instance = new Model();
@@ -18,21 +18,32 @@ public class Model {
 
 	private Model() {
 		model = new ArrayList<>();
+		User user = new User("admin", "admin");
+		model.add(user);
 	}
 
 	public void add(User user) {
 		model.add(user);
 	}
 
-	public List<String> list() {
+	private List<String> list() {
 		return model.stream()
 				.map(User::getName)
 				.collect(Collectors.toList());
 	}
-	public String password(String name){
+	private String password(String name){
 		return model.stream()
 				.filter(x -> x.getName().equals(name))
 				.map(User::getPassword)
 				.collect(Collectors.joining());
+	}
+	public boolean isExists(String name, String password){
+		Model	model 		= Model.getInstance();
+		List<String> names	= model.list();
+		for(String user : names)
+			if(model.password(name).equals(password) && user.equals(name)) {
+				return true;
+			}
+		return false;
 	}
 }
