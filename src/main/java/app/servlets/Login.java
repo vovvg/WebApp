@@ -1,9 +1,7 @@
 package app.servlets;
 
-import app.entities.User;
 import app.model.Model;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "login", urlPatterns = "/login")
 public class Login extends HttpServlet {
@@ -30,8 +27,8 @@ public class Login extends HttpServlet {
 				resp.sendRedirect("home");
 		}
 		else {
-			req.setAttribute("Fail", "fail");
-			req.getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
+			req.setAttribute("fail", "fail");
+			doGet(req, resp);
 		}
 	}
 }

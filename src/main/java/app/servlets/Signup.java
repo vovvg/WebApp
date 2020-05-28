@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "signup", urlPatterns = "/signup")
 public class Signup extends HttpServlet {
@@ -27,8 +26,9 @@ public class Signup extends HttpServlet {
 			model.add(user);
 			req.setAttribute("userName", name);
 		}
-		else
+		else {
 			req.setAttribute("fail", "fail");
+		}
 		doGet(req, resp);
 	}
 }
