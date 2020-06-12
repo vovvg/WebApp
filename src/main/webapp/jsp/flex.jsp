@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: bstacksp
@@ -24,5 +25,15 @@
 		<button class="w3-btn w3-hover-green w3-round-large" onclick="location.href='signup'">Sign up</button>
 	</div>
 </div>
+<TABLE class="form-style-5">
+	<tr>
+		<th>Login</th>
+	</tr>
+	<c:forEach items="${usersFromServer}" var="users">
+		<tr>
+			<td>${users.login}</td>
+		</tr>
+	</c:forEach>
+</TABLE>
 </body>
 </html>
