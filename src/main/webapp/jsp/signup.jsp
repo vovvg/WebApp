@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: bstacksp
@@ -18,7 +19,7 @@
 	<h1 align="center">Flex</h1>
 </div>
 
-<div class=form-style-5>
+<div class=form-style-5 align="center">
 	<%
 		if (request.getAttribute("userName") != null) {
 			out.println("<div class=\"w3-panel w3-green w3-display-container w3-card-4 w3-round\">\n" +
@@ -39,12 +40,12 @@
 		<div>
 			<h2>Sign Up</h2>
 		</div>
-		<form method="post">
+		<form method="post" action="/signup">
 			<label>Name:
-				<input type="text" name="name"><br />
+				<input type="text" id="login" name="login"><br />
 			</label>
 			<label>Password:
-				<input type="password" name="pass"><br />
+				<input type="password" id="password" name="password"><br />
 			</label>
 			<button type="submit">Submit</button>
 		</form>
@@ -53,5 +54,15 @@
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
 	<button class="w3-btn w3-round-large" onclick="location.href='..'">Back to flex</button>
 </div>
+<TABLE class="form-style-5">
+	<tr>
+		<th>Login</th>
+	</tr>
+	<c:forEach items="${usersFromServer}" var="users">
+		<tr>
+			<td>${users.login}</td>
+		</tr>
+	</c:forEach>
+</TABLE>
 </body>
 </html>
