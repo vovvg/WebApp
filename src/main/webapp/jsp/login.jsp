@@ -18,17 +18,26 @@
 	<h1 align="center">Flex</h1>
 </div>
 
-<div class="form-style-5">
-	<div>
+<div class=form-style-5 align="center">
+	<%
+		if(request.getAttribute("fail") != null)
+			out.println("<div class=\"w3-panel w3-red w3-display-container w3-card-4 w3-round\">\n" +
+					"   <span onclick=\"this.parentElement.style.display='none'\"\n" +
+					"   class=\"w3-button w3-margin-right w3-display-right w3-round-large w3-hover-red w3-border w3-border-red w3-hover-border-grey\">×</span>\n" +
+					"   <h5>Fail!</h5>\n" +
+					"</div>");
+
+	%>
+	<div class="form-style-5">
 		<div>
 			<h2>Log In</h2>
 		</div>
-		<form method="post">
+		<form method="post" action="/login">
 			<label>Name:
-				<input type="text" name="name" ><br />
+				<input type="text" id="login" name="login"><br />
 			</label>
 			<label>Password:
-				<input type="password" name="pass"><br />
+				<input type="password" id="password" name="password"><br />
 			</label>
 			<button type="submit">Submit</button>
 		</form>

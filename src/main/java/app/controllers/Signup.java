@@ -1,17 +1,13 @@
 package app.controllers;
 
 import app.models.User;
-import app.models.UserForm;
 import app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -21,9 +17,8 @@ public class Signup {
 	UserRepository userRepository;
 
 	@RequestMapping(path = "/signup", method = RequestMethod.GET)
-	public ModelAndView login() {
+	public ModelAndView login(ModelAndView modelAndView) {
 		List<User> users = userRepository.findAll();
-		ModelAndView modelAndView = new ModelAndView("signup");
 		modelAndView.addObject("usersFromServer", users);
 		return modelAndView;
 	}
@@ -31,15 +26,15 @@ public class Signup {
 	@RequestMapping(path = "/signup", method = RequestMethod.POST)
 	public ModelAndView addUser(User user) {
 		ModelAndView modelAndView = new ModelAndView("signup");
-		if(user.getLogin().equals(null) || user.getPassword().equals(null))
-			return login();
+		if (user.getLogin() == null || user.getPassword() == null)
+			return login(modelAndView);
 		try {
 			userRepository.save(user);
+			modelAndView.addObject("userName", user.getLogin());
 		} catch (Exception e) {
-			return login();
+			modelAndView.addObject("fail", "fail");
+			return login(modelAndView);
 		}
-
-		modelAndView.addObject("login", user.getLogin());
-		return login();
+		return login(modelAndView);
 	}
 }

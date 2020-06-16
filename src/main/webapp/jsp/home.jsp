@@ -23,7 +23,7 @@
 </div>
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
 	<form method="post">
-	<button type="submit" name="exit" class="w3-btn w3-round-large">Exit</button>
+	<button type="submit" name="exit" id="exit" class="w3-btn w3-round-large">Exit</button>
 	</form>
 </div>
 </body>
