@@ -20,7 +20,7 @@ public class Signup {
 	UserRepository userRepository;
 
 	@RequestMapping(path = "/signup", method = RequestMethod.GET)
-	public ModelAndView login(ModelAndView modelAndView) {
+	public ModelAndView signup(ModelAndView modelAndView) {
 		return modelAndView;
 	}
 
@@ -28,8 +28,10 @@ public class Signup {
 	public ModelAndView addUser(User user, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("signup");
 		try {
-			if (user.getLogin() == null || user.getPassword() == null)
-				return login(modelAndView);
+			if (user.getLogin() == "" || user.getPassword() == "") {
+				modelAndView.addObject("fail", "fail");
+				return modelAndView;
+			}
 			userRepository.save(user);
 			modelAndView.addObject("userName", user.getLogin());
 			HttpSession session = request.getSession();
