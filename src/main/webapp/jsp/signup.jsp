@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: bstacksp
@@ -21,13 +20,6 @@
 
 <div class=form-style-5 align="center">
 	<%
-		if (request.getAttribute("userName") != null) {
-			out.println("<div class=\"w3-panel w3-green w3-display-container w3-card-4 w3-round\">\n" +
-					"   <span onclick=\"this.parentElement.style.display='none'\"\n" +
-					"   class=\"w3-button w3-margin-right w3-display-right w3-round-large w3-hover-green w3-border w3-border-green w3-hover-border-grey\">×</span>\n" +
-					"   <h5>User '" + request.getAttribute("userName") + "' signed!</h5>\n" +
-					"</div>");
-		}
 		if(request.getAttribute("fail") != null)
 			out.println("<div class=\"w3-panel w3-red w3-display-container w3-card-4 w3-round\">\n" +
 					"   <span onclick=\"this.parentElement.style.display='none'\"\n" +
@@ -54,15 +46,6 @@
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
 	<button class="w3-btn w3-round-large" onclick="location.href='..'">Back to flex</button>
 </div>
-<TABLE class="form-style-5">
-	<tr>
-		<th>Login</th>
-	</tr>
-	<c:forEach items="${usersFromServer}" var="users">
-		<tr>
-			<td>${users.login}</td>
-		</tr>
-	</c:forEach>
-</TABLE>
+
 </body>
 </html>
